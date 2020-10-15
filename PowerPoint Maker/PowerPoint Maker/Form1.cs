@@ -23,6 +23,10 @@
  * build power point slide.
  * Power point slide(s) should be the output.
  * 
+ * Author notes:
+ * Google JSON API key:  AIzaSyAgk3eXP0oE1gpdhfrMLHAnuQ4UYoJwrmE 
+ * Google search engine: 7f90a3ed8b3499910
+ * https://customsearch.googleapis.com/customsearch/v1?cx=7f90a3ed8b3499910&fileType=.jpg&gl=us&lr=lang_en&num=10&q=square&safe=active&searchType=image&key=[YOUR_API_KEY]
  */
 using System;
 using System.Collections.Generic;
@@ -42,24 +46,20 @@ namespace PowerPoint_Maker
 {
     public partial class Form1 : Form
     {
+        //variables and constants related to the form.
         private string title;
         private string textArea;
+        private const string API_KEY = "key=AIzaSyAgk3eXP0oE1gpdhfrMLHAnuQ4UYoJwrmE";
+        private const string SEARCH_ENGINE = "cx=7f90a3ed8b3499910";
+        private const string API = "https://customsearch.googleapis.com/customsearch/v1?fileType=.jpg&gl=us&lr=lang_en&num=10&safe=active&searchType=image&" + API_KEY + "&" + SEARCH_ENGINE;
 
+        //Auto generated.
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //If the user sets a new title, then start an image search, and repopulate the images shown. 10/15/2020 - JB
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             title = textBox1.Text;
@@ -68,18 +68,19 @@ namespace PowerPoint_Maker
 
         //If given time, I will develope a full WordPad like editor for this richTextBox,
         //however, if there is not enough time, then the user should use powerpoint to create
-        //their text area, copy then paste that into the Text Area richTextBox. 10/14/2020
+        //their text area, copy then paste that into the Text Area richTextBox. 10/14/2020 - JB
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             textArea = richTextBox1.Text;
             GoogleImageSearch(title);
         }
 
+        //
         private void button1_Click(object sender, EventArgs e)
         {
             /*https://www.free-power-point-templates.com/articles/create-powerpoint-ppt-programmatically-using-c/
-            * The above link is used for reference in this section of the applicaiton
-            * 10/15/2020
+            * The above link is the reference where I grabbed the following code related to generating a .ppt file.
+            * 10/15/2020 - JB
             */
             PowerPoint.Application pptApplication = new PowerPoint.Application();
 
@@ -112,14 +113,19 @@ namespace PowerPoint_Maker
             pptApplication.Quit();
         }
 
-        //Search Google Images using a passed in String, updating the listView. 10/14/2020
-        private void GoogleImageSearch(String GoogleSearchString)
+        //Search Google Images using a passed in String, updating the listView. 10/14/2020 - JB
+        //using customsearch API from Google: the query is "GoogleSearchString", and the API key, custom search engine, and url is listed above. 10/15/2020 - JB
+        private void GoogleImageSearch(string GoogleSearchString)
         {
             //Check if input is good. 10/14/2020
             if(GoogleSearchString != "")
             {
 
             }
+
+            //Complete the API url with the search query.
+            string apiURL = API + "&q=" + GoogleSearchString;
+
         }
     }
 }

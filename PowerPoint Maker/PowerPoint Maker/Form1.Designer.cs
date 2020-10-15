@@ -48,7 +48,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "PowerPoint Maker";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -58,7 +57,6 @@
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Title:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
