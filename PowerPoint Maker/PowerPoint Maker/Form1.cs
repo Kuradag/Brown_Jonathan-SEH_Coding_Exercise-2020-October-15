@@ -41,6 +41,10 @@ using System.Runtime.InteropServices;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
+using System.Net;
+using System.IO;
+using Google.Apis.Customsearch.v1.Data;
+using Newtonsoft.Json;
 
 namespace PowerPoint_Maker
 {
@@ -75,7 +79,7 @@ namespace PowerPoint_Maker
             GoogleImageSearch(title);
         }
 
-        //
+        //This button will generate a .ppt file with the slide using the title and text area.
         private void button1_Click(object sender, EventArgs e)
         {
             /*https://www.free-power-point-templates.com/articles/create-powerpoint-ppt-programmatically-using-c/
@@ -117,14 +121,37 @@ namespace PowerPoint_Maker
         //using customsearch API from Google: the query is "GoogleSearchString", and the API key, custom search engine, and url is listed above. 10/15/2020 - JB
         private void GoogleImageSearch(string GoogleSearchString)
         {
-            //Check if input is good. 10/14/2020
+            //Check if input is not empty. 10/14/2020
             if(GoogleSearchString != "")
             {
 
             }
 
-            //Complete the API url with the search query.
+            //Complete the API url with the search query. 10/15/2020 - JB
             string apiURL = API + "&q=" + GoogleSearchString;
+
+            //https://www.youtube.com/watch?v=3NLfhEjq9Tk
+            //the above link is a reference on the following code. I am struggling to figure out
+            //how to get the JSON data using the API above.
+            var request = WebRequest.Create(apiURL);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseString = reader.ReadToEnd();
+            /*
+             * dynamic jsonData = Json.Convert.DeserializeObject(reponseString);
+            var results = new List<Result>();
+            foreach(var item in jsonData.items)
+            {
+                results.Add(new Result {
+                    Title = item.title,
+                    Link = item.link,
+                    Snippet = item.snippet,
+                }) ;
+
+            }
+           return View(results.ToList());
+            */
 
         }
     }
