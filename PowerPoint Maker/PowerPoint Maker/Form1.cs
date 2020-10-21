@@ -24,7 +24,6 @@
  * Power point slide(s) should be the output.
  * 
  * Author notes:
- * Google JSON API key:  AIzaSyAgk3eXP0oE1gpdhfrMLHAnuQ4UYoJwrmE 
  * Google search engine: 7f90a3ed8b3499910
  * https://customsearch.googleapis.com/customsearch/v1?cx=7f90a3ed8b3499910&fileType=.jpg&gl=us&lr=lang_en&num=10&q=square&safe=active&searchType=image&key=[YOUR_API_KEY]
  */
@@ -53,7 +52,7 @@ namespace PowerPoint_Maker
         //variables and constants related to the form.
         private string title;
         private string textArea;
-        private const string API_KEY = "key=AIzaSyAgk3eXP0oE1gpdhfrMLHAnuQ4UYoJwrmE";
+        private const string API_KEY = "key=";
         private const string SEARCH_ENGINE = "cx=7f90a3ed8b3499910";
         private const string API = "https://customsearch.googleapis.com/customsearch/v1?fileType=.jpg&gl=us&lr=lang_en&num=10&safe=active&searchType=image&" + API_KEY + "&" + SEARCH_ENGINE;
 
